@@ -1,10 +1,13 @@
-package com.retail.model;
+package com.retail.model.user;
 
 import java.util.Date;
 
 import com.retail.types.UserType;
 
 /**
+ * Represents a retail website user, users can be employees, affiliates or
+ * customers.
+ * 
  * @author Omer Dawelbeit (omerio)
  *
  */
@@ -13,15 +16,7 @@ public class User {
     private Date customerSince;
     
     private UserType type;
-    
-
-    /**
-     * 
-     */
-    public User() {
-        super();
-    }
-    
+      
     /**
      * @param customerSince
      * @param type

@@ -1,13 +1,17 @@
 package com.retail.model.discount;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Set;
 
-import com.retail.model.Bill;
+import com.retail.model.bill.Discountable;
 import com.retail.types.CategoryType;
 import com.retail.types.DiscountType;
 
 /**
+ * A discount based on a certain amount off a net multiples.
+ * e.g. $5 off for every $100
+ * 
  * @author Omer Dawelbeit (omerio)
  *
  */
@@ -15,14 +19,6 @@ public class NetMultiplesDiscount extends GenericDiscount {
     
     private BigDecimal netMultiples;
     
-
-    /**
-     * 
-     */
-    public NetMultiplesDiscount() {
-        super();
-    }
-
 
     /**
      * @param type
@@ -33,21 +29,56 @@ public class NetMultiplesDiscount extends GenericDiscount {
             BigDecimal netMultiples) {
         
         super(type, discount, exclude);
+        
+        if((netMultiples == null) || BigDecimal.ZERO.equals(netMultiples)) {
+            throw new IllegalArgumentException("netMultiples is missing or invalid");
+        }
+        
         this.netMultiples = netMultiples;
         
     }
 
+    @Override
+    public boolean isApplicable(Discountable discountable) {
+        
+        validate(discountable);
+        
+        if(netMultiples == null) {
+            throw new IllegalArgumentException("netMultiples is required");
+        }
+        
+        // check if the category is excluded
+        boolean applicable = super.isApplicable(discountable.getCategory());
+        
+        if(applicable) {
 
-    /* (non-Javadoc)
-     * @see com.retail.model.discount.Discount#apply(com.retail.model.Bill)
+            int compare = discountable.getNetPayable().compareTo(netMultiples);
+
+            // only applicable if the netPayable is equal to or greater than the netMultiples
+            applicable = (compare == 0) || (compare == 1);
+
+        } 
+        
+        return applicable;
+    }
+    
+    /**
+     * Net multiples overrides the GenericDiscount calculate method 
      */
     @Override
-    public BigDecimal calculate(Bill bill) {
-        // TODO Auto-generated method stub
-        return null;
+    public BigDecimal calculate(Discountable discountable) {
+        BigDecimal amount = null;
+        
+        if(this.isApplicable(discountable)) {
+            
+            amount = discountable.getNetPayable().divide(netMultiples, RoundingMode.FLOOR);
+            
+            amount = amount.multiply(getDiscount());
+        }
+        
+        return amount;
     }
-
-
+    
     /**
      * @return the netMultiples
      */
@@ -62,5 +93,6 @@ public class NetMultiplesDiscount extends GenericDiscount {
     public void setNetMultiples(BigDecimal netMultiples) {
         this.netMultiples = netMultiples;
     }
+
 
 }

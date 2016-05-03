@@ -38,7 +38,7 @@
                 <version>2.16</version>
                 <configuration>
                     <!-- Use the Sun Conding Conventions https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml -->
-                   <!--  <configLocation>sun_checks.xml</configLocation>  -->
+                    <configLocation>checkstyle.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
                     <failOnViolation>false</failOnViolation>
                 </configuration>
