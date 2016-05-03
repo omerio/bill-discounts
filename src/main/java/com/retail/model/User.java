@@ -22,32 +22,27 @@ public class User {
         super();
     }
     
-    
-
     /**
      * @param customerSince
      * @param type
      */
     public User(Date customerSince, UserType type) {
         super();
-        this.customerSince = customerSince;
+        if(customerSince != null) {
+            this.customerSince = new Date(customerSince.getTime());
+        }
         this.type = type;
     }
-
-
 
     /**
      * @return the customerSince
      */
     public Date getCustomerSince() {
-        return customerSince;
-    }
-
-    /**
-     * @param customerSince the customerSince to set
-     */
-    public void setCustomerSince(Date customerSince) {
-        this.customerSince = customerSince;
+        Date since = this.customerSince;
+        if(this.customerSince != null) {
+            since = new Date(customerSince.getTime());
+        }
+        return since;
     }
 
     /**
@@ -56,15 +51,5 @@ public class User {
     public UserType getType() {
         return type;
     }
-
-    /**
-     * @param type the type to set
-     */
-    public void setType(UserType type) {
-        this.type = type;
-    }
     
-    
-    
-
 }

@@ -16,9 +16,9 @@ public class Bill {
     
     private CategoryType category;
     
-    private List<Discount> alwaysApplicable;
+    private List<Discount> alwaysApplicableDiscounts;
     
-    private List<Discount> mutuallyExclusive;
+    private List<Discount> mutuallyExclusiveDiscounts;
     
     
     /**
@@ -80,28 +80,28 @@ public class Bill {
      * @return the alwaysApplicable
      */
     public List<Discount> getAlwaysApplicable() {
-        return alwaysApplicable;
+        return alwaysApplicableDiscounts;
     }
 
     /**
      * @param alwaysApplicable the alwaysApplicable to set
      */
     public void setAlwaysApplicable(List<Discount> alwaysApplicable) {
-        this.alwaysApplicable = alwaysApplicable;
+        this.alwaysApplicableDiscounts = alwaysApplicable;
     }
 
     /**
      * @return the mutuallyExclusive
      */
     public List<Discount> getMutuallyExclusive() {
-        return mutuallyExclusive;
+        return mutuallyExclusiveDiscounts;
     }
 
     /**
      * @param mutuallyExclusive the mutuallyExclusive to set
      */
     public void setMutuallyExclusive(List<Discount> mutuallyExclusive) {
-        this.mutuallyExclusive = mutuallyExclusive;
+        this.mutuallyExclusiveDiscounts = mutuallyExclusive;
     }
 
 }

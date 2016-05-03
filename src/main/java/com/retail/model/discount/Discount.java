@@ -15,6 +15,6 @@ public interface Discount {
      * @param bill - the Bill instance for which the discount should be applied
      * @return the discounted amount if applicable, null otherwise
      */
-    public BigDecimal apply(Bill bill);
+    public BigDecimal calculate(Bill bill);
 
 }

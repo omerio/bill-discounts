@@ -40,7 +40,7 @@ public class CustomerPeriodDiscount extends GenericDiscount {
      * @see com.retail.model.discount.Discount#apply(com.retail.model.Bill)
      */
     @Override
-    public BigDecimal apply(Bill bill) {
+    public BigDecimal calculate(Bill bill) {
         // TODO Auto-generated method stub
         return null;
     }
