@@ -57,4 +57,4 @@ To run the checkstyle report:
     mvn checkstyle:checkstyle
 ```
 
-I've also followed the Java coding standards and defensive programming, i.e. validation, checking for nulls and invalid values where possible.
+I've also followed the Java coding standards and defensive programming, i.e. validation, checking for nulls and invalid values where possible. And where appropriate comments are added to the code to ensure other developers can also understand and easily work on the code.
