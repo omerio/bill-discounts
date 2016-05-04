@@ -12,6 +12,7 @@ Clone and build the project
 
 ```bash
     git clone https://github.com/omerio/bill-discounts.git
+    cd bill-discounts
     mvn install
 ```    
 
