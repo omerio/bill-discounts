@@ -21,14 +21,15 @@ public class NetMultiplesDiscount extends GenericDiscount {
     
 
     /**
-     * @param type
-     * @param discount
-     * @param exclude
+     * Create a new net multiples discount
+     * @param discount the value of the discount either an actual amount or percentage
+     * @param exclude the excluded categories
+     * @param netMultiples the multiples from the net on which the discount applies
      */
-    public NetMultiplesDiscount(DiscountType type, BigDecimal discount, Set<CategoryType> exclude, 
+    public NetMultiplesDiscount(BigDecimal discount, Set<CategoryType> exclude, 
             BigDecimal netMultiples) {
         
-        super(type, discount, exclude);
+        super(DiscountType.AMOUNT, discount, exclude);
         
         if((netMultiples == null) || BigDecimal.ZERO.equals(netMultiples)) {
             throw new IllegalArgumentException("netMultiples is missing or invalid");
@@ -69,11 +70,18 @@ public class NetMultiplesDiscount extends GenericDiscount {
     public BigDecimal calculate(Discountable discountable) {
         BigDecimal amount = null;
         
+        validate(discountable);
+        
+        if(getDiscount() == null) {
+            throw new IllegalArgumentException("discount is null");
+        }
+        
         if(this.isApplicable(discountable)) {
             
-            amount = discountable.getNetPayable().divide(netMultiples, RoundingMode.FLOOR);
+            amount = discountable.getNetPayable().divide(netMultiples, 0, RoundingMode.FLOOR);
             
-            amount = amount.multiply(getDiscount());
+            amount = amount.multiply(getDiscount()).setScale(2, RoundingMode.HALF_UP);;
+
         }
         
         return amount;

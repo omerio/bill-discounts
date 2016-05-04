@@ -27,8 +27,8 @@ public abstract class GenericDiscount implements Discount {
     
     /**
      * @param type percentage or amount, defaults to percentage
-     * @param discount
-     * @param exclude
+     * @param discount the value of the discount either an actual amount or percentage
+     * @param exclude the excluded categories
      */
     public GenericDiscount(DiscountType type, BigDecimal discount, Set<CategoryType> exclude) {
         super();
@@ -96,20 +96,13 @@ public abstract class GenericDiscount implements Discount {
                 throw new IllegalArgumentException("invalid discountType: " + type);
             }
             
+            amount = amount.setScale(2, RoundingMode.HALF_UP);
+            
         }
         
         return amount;
     }
     
-    /**
-     * Calculate the discount based on the provided net. This will
-     * check if the discount type is percentage or amount based before
-     * making the calculation
-     * @param amount
-     * @return
-     */
-
-
     /**
      * @return the discount amount
      * 
@@ -119,8 +112,7 @@ public abstract class GenericDiscount implements Discount {
     }
 
     /**
-     * @param discount, if percentage then this should be provided as a whole number
-     * i.e. 50 for 50%
+     * @param discount, if percentage then this should be provided as a whole number i.e. 50 for 50%
      */
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;

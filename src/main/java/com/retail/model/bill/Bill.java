@@ -8,6 +8,12 @@ import com.retail.model.user.User;
 import com.retail.types.CategoryType;
 
 /**
+ * Represent a user bill on the retail website
+ * The bill can have discounts attached to it, the discounts
+ * are managed separately. A user can have many bills, but a 
+ * bill reference only one user. The bill has a category i.e.
+ * Groceries, Clothing, etc...
+ * 
  * @author Omer Dawelbeit (omerio)
  *
  */
@@ -15,19 +21,26 @@ public class Bill implements Discountable {
     
     private User user;
     
+    // the bill's net before discounts are applied
     private BigDecimal net;
     
+    // the bill's net after the discounts are applied
     private BigDecimal netPayable;
     
     private CategoryType category;
     
+    // discounts that will always be applied
     private List<Discount> alwaysApplicableDiscounts;
     
+    // discounts that are mutually exclusive, if one is applied,
+    // the rest won't
     private List<Discount> mutuallyExclusiveDiscounts;
         
     /**
-     * @param net
-     * @param category
+     * Create a new bill for a user with net and category
+     * @param user that the bill belongs to
+     * @param net the net total of the bill
+     * @param category the category of the bill
      */
     public Bill(User user, BigDecimal net, CategoryType category) {
         super();

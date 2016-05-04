@@ -21,9 +21,10 @@ public class CustomerPeriodDiscount extends GenericDiscount {
     
 
     /**
-     * @param type
-     * @param discount
-     * @param exclude
+     * Create discount
+     * @param type percentage or amount, defaults to percentage
+     * @param discount the value of the discount either an actual amount or percentage
+     * @param exclude the excluded categories
      */
     public CustomerPeriodDiscount(DiscountType type, BigDecimal discount, Set<CategoryType> exclude,
             Integer months) {
@@ -38,8 +39,8 @@ public class CustomerPeriodDiscount extends GenericDiscount {
     @Override
     public boolean isApplicable(Discountable discountable) {
         
-        if((discountable == null) || (discountable.getUser() == null) || 
-                (discountable.getUser().getCustomerSince() == null)) {
+        if((discountable == null) || (discountable.getUser() == null) 
+                || (discountable.getUser().getCustomerSince() == null)) {
             throw new IllegalArgumentException("discountable is missing or invalid");
         }
         
@@ -54,8 +55,13 @@ public class CustomerPeriodDiscount extends GenericDiscount {
             
             // check if the number of months on this instance is smaller than the time the user
             // has been a customer
+            // get a calendar date x months ago
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.MONTH, -months);
+            // start of the day
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
 
             Date customerSince = discountable.getUser().getCustomerSince();
 

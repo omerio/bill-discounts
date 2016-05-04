@@ -19,9 +19,10 @@ public class UserTypeDiscount extends GenericDiscount {
     private UserType userType;
     
     /**
-     * @param type
-     * @param discount
-     * @param exclude
+     * @param type percentage or amount, defaults to percentage
+     * @param discount the value of the discount either an actual amount or percentage
+     * @param exclude the excluded categories
+     * @param userType the user type on which this discount should apply
      */
     public UserTypeDiscount(DiscountType type, BigDecimal discount, Set<CategoryType> exclude, UserType userType) {
         super(type, discount, exclude);
@@ -34,8 +35,9 @@ public class UserTypeDiscount extends GenericDiscount {
     @Override
     public boolean isApplicable(Discountable discountable) {
         
-        if((discountable == null) || (discountable.getUser() == null) || 
-                (discountable.getUser().getType() == null)) {
+        if((discountable == null) || (discountable.getUser() == null) 
+                || (discountable.getUser().getType() == null)) {
+            
             throw new IllegalArgumentException("discountable is missing or invalid");
         }
         

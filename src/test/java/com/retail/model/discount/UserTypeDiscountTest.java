@@ -3,7 +3,7 @@ package com.retail.model.discount;
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
-import java.util.Collections;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -173,17 +173,27 @@ public class UserTypeDiscountTest {
         
         bill.setCategory(CategoryType.ELECTRONICS);
         
+        // 30% off $450
         BigDecimal amount = discount.calculate(bill);
         assertNotNull(amount);
         
         assertEquals(new BigDecimal(135).setScale(2), amount);
+        
+        // 10% off $125.50
+        bill.setNetPayable(new BigDecimal(125.50));
+        discount.setDiscount(new BigDecimal(10));
+        amount = discount.calculate(bill);
+        assertNotNull(amount);
+        
+        assertEquals(new BigDecimal(12.55).setScale(2, RoundingMode.HALF_UP), amount);
+        
         
         // discount with amount simply returns the amount
         discount.setType(DiscountType.AMOUNT);
         
         amount = discount.calculate(bill);
         
-        assertEquals(new BigDecimal(30), amount);
+        assertEquals(new BigDecimal(10).setScale(2), amount);
         
     }
     
@@ -196,20 +206,4 @@ public class UserTypeDiscountTest {
         discount.calculate(bill);
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
 }

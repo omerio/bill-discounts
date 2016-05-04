@@ -30,14 +30,16 @@ public class DiscountServiceImpl implements DiscountService {
     // discounts that only one is applied
     private List<Discount> mutuallyExclusive = new ArrayList<>();
     
+    /**
+     * Constructs a new service
+     */
     public DiscountServiceImpl() {
         super();
         
         // discounts that are always applicable
         alwaysApplicable = new ArrayList<>();
         //For every $100 on the bill, there would be a $5 discount 
-        Discount discount = new NetMultiplesDiscount(
-                DiscountType.AMOUNT, new BigDecimal(5), null, 
+        Discount discount = new NetMultiplesDiscount(new BigDecimal(5), null, 
                 new BigDecimal(100));
         
         alwaysApplicable.add(discount);

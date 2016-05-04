@@ -18,8 +18,9 @@ public class User {
     private UserType type;
       
     /**
-     * @param customerSince
-     * @param type
+     * Create a new user
+     * @param customerSince the date the user is using the retail website
+     * @param type the user type, e.g. employee, affiliate or customer
      */
     public User(Date customerSince, UserType type) {
         super();
@@ -51,7 +52,12 @@ public class User {
      * @param customerSince the customerSince to set
      */
     public void setCustomerSince(Date customerSince) {
-        this.customerSince = customerSince;
+        
+        if(customerSince != null) {
+            this.customerSince = new Date(customerSince.getTime());
+        } else {
+            this.customerSince = null;
+        }
     }
 
     /**
