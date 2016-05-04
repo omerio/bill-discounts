@@ -23,7 +23,7 @@ Clone and build the project
 
 # Object Oriented Approach
 A high level class diagram of my approach is shown below. I've followed an OO approach to implementing the requirements, here is my rationale:
-- I felt that User and Bill do not need multiple classes as there is much business logic related to a specific type of user or bill. Instead I used enums to differentiate between the types of users and bills.
+- I felt that User and Bill do not need multiple classes as there is not much business logic related to a specific type of user or bill. Instead I used enums to differentiate between the types of users and bills.
 - I felt there is a great deal of business logic related to discounts so implemented them in a generic way such that different discounts can be created. I've used a common discounts super class [GenericDiscount](https://github.com/omerio/bill-discounts/blob/master/src/main/java/com/retail/model/discount/GenericDiscount.java) for the common functionality with subclasses implementing the logic related to the applicability of the discount.
 - I've used interfaces where possible to reduce coupling.
 
