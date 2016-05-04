@@ -32,7 +32,7 @@ A high level class diagram of my approach is shown below. I've followed an OO ap
 
 I’ve used the [Cobertura](https://github.com/cobertura/cobertura) code coverage maven plugin to ensure the unit tests provide full coverage. I’ve configured the plugin with the ignoreTrivial flag to ignore trivial one line methods such as getters and setters. The current coverage is 100% as shown in the screenshot below.
 
-![Alt text](https://github.com/omerio/bill-discounts/blob/master/img/code_coverage "Test Coverage")
+![Alt text](https://github.com/omerio/bill-discounts/blob/master/img/code_coverage.png "Test Coverage")
 
 To run the test coverage:
 
