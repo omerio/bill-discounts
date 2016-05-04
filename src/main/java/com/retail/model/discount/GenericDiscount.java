@@ -54,7 +54,7 @@ public abstract class GenericDiscount implements Discount {
      * @param category to check in the excluded categories set
      * @return true if the category is not excluded, false otherwise
      */
-    protected boolean isApplicable(CategoryType category) {
+    protected boolean isCategoryApplicable(CategoryType category) {
         return (exclude == null) || (category == null) || !exclude.contains(category) ;
     }
     
@@ -74,6 +74,10 @@ public abstract class GenericDiscount implements Discount {
         BigDecimal amount = null;
         
         validate(discountable);
+        
+        if(discount == null) {
+            throw new IllegalArgumentException("discount is null");
+        }
         
         if(this.isApplicable(discountable)) {
             BigDecimal net = discountable.getNetPayable();

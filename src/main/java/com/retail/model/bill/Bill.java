@@ -106,11 +106,27 @@ public class Bill implements Discountable {
     }
 
 
+    /**
+     * @param netPayable the netPayable to set
+     */
+    public void setNetPayable(BigDecimal netPayable) {
+        this.netPayable = netPayable;
+    }
+
+
     @Override
     public User getUser() {
         return user;
     }
     
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
     /**
      * @return the net
      */

@@ -46,5 +46,19 @@ public class User {
     public UserType getType() {
         return type;
     }
+
+    /**
+     * @param customerSince the customerSince to set
+     */
+    public void setCustomerSince(Date customerSince) {
+        this.customerSince = customerSince;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(UserType type) {
+        this.type = type;
+    }
     
 }

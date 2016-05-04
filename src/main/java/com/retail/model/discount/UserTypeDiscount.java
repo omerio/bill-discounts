@@ -44,7 +44,7 @@ public class UserTypeDiscount extends GenericDiscount {
         }
         
         // check if the category is excluded
-        boolean applicable = super.isApplicable(discountable.getCategory());
+        boolean applicable = super.isCategoryApplicable(discountable.getCategory());
         
         if(applicable) {    
             // check if the userType on this instance matches the one on the discountable
