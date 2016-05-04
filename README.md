@@ -1,5 +1,5 @@
 # Summary
-As requested the use case in the exercise is implemented in a generic way such that discounts can be created. The main test cases are in
+As requested the use case in the exercise is implemented in a generic way such that discounts can easily be created and applied to bills. The main test cases are in
 [BillTest](https://github.com/omerio/bill-discounts/blob/master/src/test/java/com/retail/model/bill/BillTest.java). The discounts in the exercise are created in [DiscountServiceImpl](https://github.com/omerio/bill-discounts/blob/master/src/main/java/com/retail/service/discount/DiscountServiceImpl.java). Below is a summary of my approach, rationale and completed activities.
 
 # Getting Started
@@ -26,13 +26,13 @@ A high level class diagram of my approach is shown below. I've followed an OO ap
 - I felt there is a great deal of business logic related to discounts so implemented them in a generic way such that different discounts can be created. I've used a common discounts super class [GenericDiscount](https://github.com/omerio/bill-discounts/blob/master/src/main/java/com/retail/model/discount/GenericDiscount.java) for the common functionality with subclasses implementing the logic related to the applicability of the discount.
 - I've used interfaces where possible to reduce coupling.
 
-![Alt text](https://github.com/omerio/bill-discounts/blob/master/class_diagram.png "Class Diagram")
+![Alt text](https://github.com/omerio/bill-discounts/blob/master/img/class_diagram.png "Class Diagram")
 
 # Test Coverage
 
 I’ve used the [Cobertura](https://github.com/cobertura/cobertura) code coverage maven plugin to ensure the unit tests provide full coverage. I’ve configured the plugin with the ignoreTrivial flag to ignore trivial one line methods such as getters and setters. The current coverage is 100% as shown in the screenshot below.
 
-![Alt text](https://github.com/omerio/bill-discounts/blob/master/code_coverage "Test Coverage")
+![Alt text](https://github.com/omerio/bill-discounts/blob/master/img/code_coverage "Test Coverage")
 
 To run the test coverage:
 
